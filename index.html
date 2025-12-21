@@ -226,7 +226,8 @@
           </div>
         </div>
 
-        <form class="form" id="quoteForm">
+        <form class="form" action="https://formspree.io/f/xlgrbnwg" method="POST">
+
           <label>
             <span>Full name</span>
             <input name="name" autocomplete="name" placeholder="Your name" required />
@@ -261,9 +262,7 @@
           </label>
 
           <button class="btn btn--dark" type="submit">Send request</button>
-          <p class="form__fineprint">
-            This demo form stores nothing. Replace with your email/API (Formspree, Netlify Forms, etc.).
-          </p>
+          
 
           <div class="form__toast" id="toast" role="status" aria-live="polite" hidden>
             Sent! We’ll reach out shortly.
