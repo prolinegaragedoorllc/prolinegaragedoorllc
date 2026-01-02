@@ -263,14 +263,13 @@
             <textarea name="message" rows="5" placeholder="Describe the issue..."></textarea>
           </label>
           
-<div class="g-recaptcha" data-sitekey="6LfxhT0sAAAAAIxvFQdmvo8N1P1XyaGvvCkHe7CS"></div>
           <button class="btn btn--dark" type="submit">Send request</button>
           
 
           <div class="form__toast" id="toast" role="status" aria-live="polite" hidden>
             Sent! We’ll reach out shortly.
           </div>
-          <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+          
 <script>
 document.getElementById("leadForm").addEventListener("submit", function (e) {
   // אם אין reCAPTCHA מסומן - חוסמים את השליחה
