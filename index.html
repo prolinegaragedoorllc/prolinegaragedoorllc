@@ -227,7 +227,8 @@
           </div>
         </div>
 
-        <form class="form" action="https://formspree.io/f/xlgrbnwg" method="POST">
+        <form id="leadForm" class="form" action="https://formspree.io/f/xlgrbnwg" method="POST">
+
 
           <label>
             <span>Full name</span>
@@ -270,6 +271,16 @@
             Sent! We’ll reach out shortly.
           </div>
           <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script>
+document.getElementById("leadForm").addEventListener("submit", function (e) {
+  // אם אין reCAPTCHA מסומן - חוסמים את השליחה
+  if (typeof grecaptcha === "undefined" || grecaptcha.getResponse().length === 0) {
+    e.preventDefault();
+    alert("Please check 'I'm not a robot' before sending.");
+    return false;
+  }
+});
+</script>
 
         </form>
       </div>
