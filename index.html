@@ -296,8 +296,21 @@
     </div>
   </footer>
 
-  <script src="./script.js"></script>
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+ <script src="./script.js"></script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("leadForm");
+  if (!form) return;
+
+  form.addEventListener("submit", function (e) {
+    if (typeof grecaptcha === "undefined" || grecaptcha.getResponse().length === 0) {
+      e.preventDefault();
+      alert("Please check 'I'm not a robot' before sending.");
+    }
+  });
+});
+</script>
 
   
 </body>
