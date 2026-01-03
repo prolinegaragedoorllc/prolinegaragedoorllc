@@ -282,84 +282,65 @@
     </a>
   </div>
 
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-  
+  <!-- reCAPTCHA -->
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
-    // Keep the user on the same page: submit via fetch, show toast, do not navigate away.
-    const form = document.getElementById('leadForm');
-    const toast = document.getElementById('toast');
-    const submitBtn = document.getElementById('submitBtn');
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      // Require checkbox to be completed
-      if (typeof grecaptcha === 'undefined' || grecaptcha.getResponse().length === 0) {
-        alert("Please check 'I'm not a robot' before sending.");
-        return;
-      }
-
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Sending...';
-
-      try {
-        const fd = new FormData(form);
-
-        const res = await fetch(form.action, {
-          method: 'POST',
-          body: fd,
-          headers: { 'Accept': 'application/json' }
-        });
-
-        if (res.ok) {
-          form.reset();
-          if (typeof grecaptcha !== 'undefined') grecaptcha.reset();
-          toast.style.display = 'block';
-          setTimeout(() => { toast.style.display = 'none'; }, 4500);
-        } else {
-          const data = await res.json().catch(() => ({}));
-          alert(data?.error || 'Something went wrong. Please call us instead.');
-        }
-      } catch (err) {
-        alert('Network error. Please call us instead.');
-      } finally {
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Request Callback';
-      }
-    });
-  </script>
-  <script>
+<script>
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("leadForm");
+  const toast = document.getElementById("toast");
+  const submitBtn = document.getElementById("submitBtn");
+  const phone = document.getElementById("phone");
+
   if (!form) return;
 
-  form.addEventListener("submit", (e) => {
-    // קודם כל: לא לתת לשלוח אם חסר required
+  // Phone: numbers only, max 10 digits
+  if (phone) {
+    phone.addEventListener("input", () => {
+      phone.value = phone.value.replace(/[^0-9]/g, "").slice(0, 10);
+    });
+  }
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    // HTML5 required validation
     if (!form.checkValidity()) {
-      e.preventDefault();
       form.reportValidity();
       return;
     }
 
-    // ואז: לא לתת לשלוח בלי captcha
+    // reCAPTCHA check
     if (typeof grecaptcha === "undefined" || grecaptcha.getResponse().length === 0) {
-      e.preventDefault();
       alert("Please check 'I'm not a robot' before sending.");
       return;
     }
-  });
-});
-</script>
 
-  <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const phone = document.getElementById("phone");
-  if (!phone) return;
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Sending...";
 
-  phone.addEventListener("input", () => {
-    phone.value = phone.value.replace(/[^0-9]/g, "");
-    if (phone.value.length > 10) {
-      phone.value = phone.value.slice(0, 10);
+    try {
+      const fd = new FormData(form);
+
+      const res = await fetch(form.action, {
+        method: "POST",
+        body: fd,
+        headers: { "Accept": "application/json" }
+      });
+
+      if (res.ok) {
+        form.reset();
+        grecaptcha.reset();
+        toast.style.display = "block";
+        setTimeout(() => toast.style.display = "none", 4500);
+      } else {
+        alert("Something went wrong. Please call us instead.");
+      }
+    } catch {
+      alert("Network error. Please call us instead.");
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Request Callback";
     }
   });
 });
