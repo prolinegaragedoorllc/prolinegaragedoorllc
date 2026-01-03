@@ -61,7 +61,6 @@ a{color:inherit;text-decoration:none}
   margin-bottom:-20px;
 }
 
-
 /* טקסט ליד הלוגו קצת פחות "מנצח" */
 .brand__name{
   font-weight:800;
@@ -155,7 +154,8 @@ a{color:inherit;text-decoration:none}
   /* מובייל: עדיין בולט, אבל לא שובר */
   .brand img{
     width:90px;
-    transform: translateY(-6px);
+    margin-top:-10px;
+    margin-bottom:-10px;
   }
 }
 
@@ -342,22 +342,14 @@ textarea{min-height:96px;resize:vertical}
   display:none;
 }
 .stickyMobile a{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
+  display:flex;align-items:center;justify-content:center;
+  gap:10px;
   background:linear-gradient(180deg,var(--green-2),var(--green-dark));
   color:#fff;
-  font-weight:800;
-  padding:10px 14px;          /* ⬅️ הקטנה */
-  border-radius:12px;         /* ⬅️ פחות “בלוק” */
-  font-size:15px;             /* ⬅️ טקסט קטן יותר */
-  box-shadow:0 10px 22px rgba(47,111,62,.25);
+  font-weight:900;
+  padding:14px 16px;
+  border-radius:14px;
+  box-shadow:0 16px 34px rgba(47,111,62,.32);
+  border:1px solid rgba(0,0,0,.12);
 }
-.stickyMobile a svg{
-  width:18px;
-  height:18px;
-}
-
-
 @media (max-width: 900px){ .stickyMobile{display:block} }
