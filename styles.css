@@ -368,4 +368,8 @@ textarea{min-height:96px;resize:vertical}
     height: 18px;
   }
 }
+.hero__bg,
+.hero__overlay{
+  pointer-events: none;
+}
 
