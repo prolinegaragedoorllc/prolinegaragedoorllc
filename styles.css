@@ -37,7 +37,7 @@ a{color:inherit;text-decoration:none}
 .brand{
   display:flex;
   align-items:center;
-  gap:12px;
+  gap:20px;
   min-width:0;
   
 }
@@ -59,9 +59,8 @@ a{color:inherit;text-decoration:none}
     0 0 0 4px rgba(255,255,255,.08),
     0 8px 24px rgba(0,0,0,.35);
 
-  /* לוגו גדול בלי לנפח header */
-  margin-top:-20px;
-  margin-bottom:-20px;
+
+  transform: translateY(-10px); /* במקום margin שלילי */
 }
 
 /* טקסט ליד הלוגו קצת פחות "מנצח" */
