@@ -354,3 +354,18 @@ textarea{min-height:96px;resize:vertical}
   border:1px solid rgba(0,0,0,.12);
 }
 @media (max-width: 900px){ .stickyMobile{display:block} }
+
+@media (max-width: 900px){
+  .stickyMobile a{
+    padding: 10px 14px;          /* ⬅️ הקטנה */
+    border-radius: 12px;         /* ⬅️ פחות “בלוק” */
+    font-size: 15px;             /* ⬅️ טקסט קטן יותר */
+    box-shadow: 0 10px 22px rgba(47,111,62,.25);
+  }
+
+  .stickyMobile a svg{
+    width: 18px;
+    height: 18px;
+  }
+}
+
