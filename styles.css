@@ -43,7 +43,7 @@ a{color:inherit;text-decoration:none}
 
 /* LOGO (בולט יותר, בלי להגדיל את ה-header) */
 .brand img{
-  width:160px;
+  width:180px;
   height:auto;
   object-fit:contain;
 
