@@ -39,16 +39,16 @@ a{color:inherit;text-decoration:none}
   align-items:center;
   gap:12px;
   min-width:0;
+  overflow: visible; 
 }
 
 /* LOGO (בולט יותר, בלי להגדיל את ה-header) */
 .brand img{
-  width:140px;
-  height:auto;
+  width:auto;
+  height:88px;
   object-fit:contain;
   
-  transform: scale(1.8);   /* 👈 זה מגדיל את הלוגו בלבד */
-  transform-origin: center;
+ 
 
   padding:0;                 /* קריטי */
   background:#e5e7eb;        /* אפור בהיר */
