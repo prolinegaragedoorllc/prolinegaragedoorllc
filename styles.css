@@ -368,8 +368,15 @@ textarea{min-height:96px;resize:vertical}
     height: 18px;
   }
 }
-.hero__bg,
-.hero__overlay{
+.hero__bg{ z-index: 0; }
+.hero__overlay{ z-index: 1; }
+
   pointer-events: none;
 }
-
+.btnRow,
+.btnRow .btn,
+.topbar__call,
+.stickyMobile{
+  position: relative;
+  z-index: 5;
+}
