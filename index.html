@@ -147,7 +147,17 @@
                 </div>
                 <div>
                   <label for="phone">Phone</label>
-                  <input id="phone" name="phone" autocomplete="tel" placeholder="(201) 555-0123" required />
+<input
+  type="tel"
+  id="phone"
+  name="phone"
+  autocomplete="tel"
+  placeholder="2015550123"
+  required
+  pattern="[0-9]{10}"
+  title="Enter a valid 10-digit US phone number"
+/>
+
                 </div>
               </div>
 
@@ -340,6 +350,21 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 </script>
+
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const phone = document.getElementById("phone");
+  if (!phone) return;
+
+  phone.addEventListener("input", () => {
+    phone.value = phone.value.replace(/[^0-9]/g, "");
+    if (phone.value.length > 10) {
+      phone.value = phone.value.slice(0, 10);
+    }
+  });
+});
+</script>
+
 
 </body>
 </html>
