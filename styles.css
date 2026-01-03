@@ -36,24 +36,31 @@ a{color:inherit;text-decoration:none}
 }
 .brand{
   display:flex;
-  align-items:center;   /* ממרכז אנכית */
-  gap:20px;
+  align-items:center;
+  gap:12px;
   min-width:0;
 }
 
+/* LOGO (בולט יותר, בלי להגדיל את ה-header) */
 .brand img{
-  width:144px;
+  width:140px;
   height:auto;
   object-fit:contain;
 
-  padding:12px;               /* יוצר את “הקובייה” */
-  background:#e5e7eb;
-  border-radius:14px;
+  padding:0;                 /* קריטי */
+  background:#e5e7eb;        /* אפור בהיר */
+  border-radius:10px;
 
+  /* “קופץ” מעל הרקע הכהה */
   box-shadow:
     0 0 0 4px rgba(255,255,255,.08),
     0 8px 24px rgba(0,0,0,.35);
+
+  /* לוגו גדול בלי לנפח header */
+  margin-top:-20px;
+  margin-bottom:-20px;
 }
+
 
 /* טקסט ליד הלוגו קצת פחות "מנצח" */
 .brand__name{
