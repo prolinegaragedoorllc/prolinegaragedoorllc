@@ -273,9 +273,7 @@
   </div>
 
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-  <script>
-    // Footer year
-    document.getElementById('year').textContent = new Date().getFullYear();
+  
 
     // Keep the user on the same page: submit via fetch, show toast, do not navigate away.
     const form = document.getElementById('leadForm');
@@ -320,5 +318,28 @@
       }
     });
   </script>
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("leadForm");
+  if (!form) return;
+
+  form.addEventListener("submit", (e) => {
+    // קודם כל: לא לתת לשלוח אם חסר required
+    if (!form.checkValidity()) {
+      e.preventDefault();
+      form.reportValidity();
+      return;
+    }
+
+    // ואז: לא לתת לשלוח בלי captcha
+    if (typeof grecaptcha === "undefined" || grecaptcha.getResponse().length === 0) {
+      e.preventDefault();
+      alert("Please check 'I'm not a robot' before sending.");
+      return;
+    }
+  });
+});
+</script>
+
 </body>
 </html>
