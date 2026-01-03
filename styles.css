@@ -47,7 +47,7 @@ a{color:inherit;text-decoration:none}
   height:auto;
   object-fit:contain;
   
-  transform: scale(1.15);   /* 👈 זה מגדיל את הלוגו בלבד */
+  transform: scale(1.8);   /* 👈 זה מגדיל את הלוגו בלבד */
   transform-origin: center;
 
   padding:0;                 /* קריטי */
