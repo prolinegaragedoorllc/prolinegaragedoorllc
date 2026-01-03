@@ -9,21 +9,65 @@ menuBtn?.addEventListener('click', () => {
 
 document.getElementById('year').textContent = String(new Date().getFullYear());
 
-const form = document.getElementById('leadForm');
-const toast = document.getElementById('toast');
+const form = document.getElementById("leadForm");
+const toast = document.getElementById("toast");
+const submitBtn = document.getElementById("submitBtn");
+const phone = document.getElementById("phone");
 
-form?.addEventListener('submit', (e) => {
-  e.preventDefault();
+if (form) {
+  // Phone: numbers only, max 10 digits
+  if (phone) {
+    phone.addEventListener("input", () => {
+      phone.value = phone.value.replace(/[^0-9]/g, "").slice(0, 10);
+    });
+  }
 
-  // Demo-only: show a success message.
-  toast.hidden = false;
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-  // Reset after a short delay.
-  setTimeout(() => {
-    toast.hidden = true;
-    form.reset();
-  }, 2200);
-});
+    // HTML5 validation
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    // reCAPTCHA validation
+    if (typeof grecaptcha === "undefined" || grecaptcha.getResponse().length === 0) {
+      alert("Please check 'I'm not a robot' before sending.");
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Sending...";
+
+    try {
+      const fd = new FormData(form);
+      // ⭐️ זה החלק שהיה חסר לך קודם
+      fd.append("g-recaptcha-response", grecaptcha.getResponse());
+
+      const res = await fetch(form.action, {
+        method: "POST",
+        body: fd,
+        headers: { "Accept": "application/json" }
+      });
+
+      if (res.ok) {
+        form.reset();
+        grecaptcha.reset();
+        toast.style.display = "block";
+        setTimeout(() => (toast.style.display = "none"), 4500);
+      } else {
+        alert("Something went wrong. Please call us instead.");
+      }
+    } catch (err) {
+      alert("Network error. Please call us instead.");
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Request Callback";
+    }
+  });
+}
+
 
 
 // Hide header on scroll down, show on scroll up
