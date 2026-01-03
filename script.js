@@ -9,7 +9,7 @@ menuBtn?.addEventListener('click', () => {
 
 document.getElementById('year').textContent = String(new Date().getFullYear());
 
-const form = document.getElementById('quoteForm');
+const form = document.getElementById('leadForm');
 const toast = document.getElementById('toast');
 
 form?.addEventListener('submit', (e) => {
