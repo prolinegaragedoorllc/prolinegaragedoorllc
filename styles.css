@@ -156,8 +156,7 @@ a{color:inherit;text-decoration:none}
   /* מובייל: עדיין בולט, אבל לא שובר */
   .brand img{
     width:90px;
-    margin-top:-10px;
-    margin-bottom:-10px;
+    transform: translateY(-6px);
   }
 }
 
