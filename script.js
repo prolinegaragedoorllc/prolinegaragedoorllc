@@ -72,7 +72,7 @@ if (form) {
 
 // Hide header on scroll down, show on scroll up
 let lastScrollY = window.scrollY;
-const header = document.querySelector('.topbar');
+const header = document.querySelector('.header');
 
 window.addEventListener('scroll', () => {
   const currentScroll = window.scrollY;
@@ -95,7 +95,7 @@ window.addEventListener('scroll', () => {
 
 
 function syncHeaderHeight(){
-  const header = document.querySelector('.topbar');
+  const header = document.querySelector('.header');
   if (!header) return;
   const h = header.offsetHeight || 0;
   document.documentElement.style.setProperty('--header-h', `${h}px`);
