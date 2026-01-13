@@ -132,7 +132,7 @@ a{color:inherit;text-decoration:none}
 }
 .hero__bg{
   position:absolute;inset:0;
-  background:url("./assets/tech.jpg") center/cover no-repeat;
+  background:url("./assets/background.png") center/cover no-repeat;
 }
 .hero__overlay{
   position:absolute;inset:0;
