@@ -112,7 +112,8 @@
               </svg>
               Call (201) 503-3118
             </a>
-            <a class="btn btn--ghost" href="#callback">Request a Callback</a>
+            <!-- Replaced callback form link with Contact page -->
+            <a class="btn btn--ghost" href="contact.html">Contact</a>
           </div>
 
           <ul aria-label="Highlights" class="bullets">
@@ -182,7 +183,7 @@
                   Proper alignment, balance, and component inspection are key parts of our maintenance approach.
                 </p>
                 <p>
-                  To request an assessment or schedule a service visit, call <strong>(201) 503-3118</strong> or use the callback form.
+                  To request an assessment or schedule a service visit, call <strong>(201) 503-3118</strong>.
                 </p>
               </div>
 
@@ -196,58 +197,8 @@
           </div>
         </div>
 
-        <!-- Form -->
-        <div class="card formCard" id="callback">
-          <h2>Request a callback</h2>
-          <p>Send details and we’ll contact you shortly.</p>
+        <!-- Form REMOVED (Formspree + reCAPTCHA + fetch removed for verification safety) -->
 
-          <form action="https://formspree.io/f/xlgrbnwg" id="leadForm" method="POST" novalidate="">
-            <div class="formGrid">
-              <div class="row2">
-                <div>
-                  <label for="name">Full name</label>
-                  <input autocomplete="name" id="name" name="name" placeholder="Your name" required=""/>
-                </div>
-                <div>
-                  <label for="phone">Phone</label>
-                  <input autocomplete="tel" id="phone" name="phone" pattern="[0-9]{10}" placeholder="2015550123" required="" title="Enter a valid 10-digit US phone number" type="tel"/>
-                </div>
-              </div>
-
-              <div class="row2">
-                <div>
-                  <label for="location">Address (optional)</label>
-                  <input autocomplete="street-address" id="location" name="location" placeholder="City, NJ"/>
-                </div>
-                <div>
-                  <label for="service">What do you need?</label>
-                  <select id="service" name="service" required="">
-                    <option disabled="" selected="" value="">Select a service</option>
-                    <option>Spring replacement</option>
-                    <option>Opener repair / install</option>
-                    <option>Door off track</option>
-                    <option>Noisy door / tune-up</option>
-                    <option>New door installation</option>
-                    <option>Other</option>
-                  </select>
-                </div>
-              </div>
-
-              <div>
-                <label for="message">Message</label>
-                <textarea id="message" name="message" placeholder="Describe the issue..." rows="4"></textarea>
-              </div>
-
-              <!-- reCAPTCHA v2 Checkbox -->
-              <div class="g-recaptcha" data-sitekey="6LfxhT0sAAAAAIxvFQdmvo8N1P1XyaGvvCkHe7CS"></div>
-
-              <div class="formActions">
-                <button class="btn btn--call btnFull" id="submitBtn" type="submit">Request Callback</button>
-                <div aria-live="polite" class="toast" id="toast" role="status">Sent! We’ll reach out shortly.</div>
-              </div>
-            </div>
-          </form>
-        </div>
       </div>
     </section>
 
@@ -305,7 +256,6 @@
     <section class="section" id="service-areas">
       <div class="container">
         <h2>Service area &amp; hours</h2>
-      
 
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px">
           <div class="card miniCard">
@@ -366,7 +316,7 @@
           <a href="terms-and-conditions.html">Terms &amp; Conditions</a> |
           <a href="contact.html">Contact</a>
         </div>
-        <small>© <span id="year"></span> ProLine Garage Door LLC. All rights reserved.</small>
+        <small>© 2026 ProLine Garage Door LLC. All rights reserved.</small>
       </div>
     </div>
   </footer>
@@ -379,69 +329,5 @@
       Tap to Call (201) 503-3118
     </a>
   </div>
-
-  <!-- reCAPTCHA -->
-  <script async="" defer="" src="https://www.google.com/recaptcha/api.js"></script>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const form = document.getElementById("leadForm");
-      const toast = document.getElementById("toast");
-      const submitBtn = document.getElementById("submitBtn");
-      const phone = document.getElementById("phone");
-      const year = document.getElementById("year");
-
-      if (year) year.textContent = new Date().getFullYear();
-      if (!form) return;
-
-      // Phone: numbers only, max 10 digits
-      if (phone) {
-        phone.addEventListener("input", () => {
-          phone.value = phone.value.replace(/[^0-9]/g, "").slice(0, 10);
-        });
-      }
-
-      form.addEventListener("submit", async (e) => {
-        e.preventDefault();
-
-        if (!form.checkValidity()) {
-          form.reportValidity();
-          return;
-        }
-
-        if (typeof grecaptcha === "undefined" || grecaptcha.getResponse().length === 0) {
-          alert("Please check 'I'm not a robot' before sending.");
-          return;
-        }
-
-        submitBtn.disabled = true;
-        submitBtn.textContent = "Sending...";
-
-        try {
-          const fd = new FormData(form);
-
-          const res = await fetch(form.action, {
-            method: "POST",
-            body: fd,
-            headers: { "Accept": "application/json" }
-          });
-
-          if (res.ok) {
-            form.reset();
-            grecaptcha.reset();
-            toast.style.display = "block";
-            setTimeout(() => toast.style.display = "none", 4500);
-          } else {
-            alert("Something went wrong. Please call us instead.");
-          }
-        } catch {
-          alert("Network error. Please call us instead.");
-        } finally {
-          submitBtn.disabled = false;
-          submitBtn.textContent = "Request Callback";
-        }
-      });
-    });
-  </script>
 </body>
 </html>
